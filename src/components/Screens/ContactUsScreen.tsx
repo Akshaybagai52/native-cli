@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ActivityIndicator, StyleSheet, ScrollView, Linking } from 'react-native';
+import { View, TextInput, TouchableOpacity, ActivityIndicator, StyleSheet, ScrollView, Linking } from 'react-native';
+import { Text } from 'react-native-paper';
+
 import { Card } from 'react-native-paper';
 import MapView, { Marker } from 'react-native-maps';
 import axios from 'axios';

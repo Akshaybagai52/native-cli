@@ -1,8 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { View,  StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { Text } from 'react-native-paper';
 import ServiceCards from '../Common/component/Service';
 import { useNavigation } from '@react-navigation/native';
 import { ServiceCard } from './ServiceCard';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import { black } from 'react-native-paper/lib/typescript/src/styles/themes/v2/colors';
+import ChatPopup from './ChatSection';
 const HomePage = () => {
     const navigation = useNavigation();
 
@@ -25,7 +29,14 @@ const HomePage = () => {
     }]
 
     return (
-        <ScrollView style={styles.container}>
+        <View style={styles.container}>
+            <View style={styles.chatIcon}>
+            <ChatPopup />
+
+
+            </View>
+
+        <ScrollView>
             {/* Header */}
             <View style={styles.header}>
                 <Image source={require('../../../assets/baselinelogo.png')} style={styles.logo} />
@@ -33,7 +44,7 @@ const HomePage = () => {
 
             {/* About Section */}
             <View style={styles.aboutSection}>
-                <Text style={styles.sectionHeading}>About <Text style={styles.redColor}>Us </Text></Text>
+                <Text style={styles.sectionHeading}>About<Text style={styles.redColor}>Us </Text></Text>
                 <Text style={styles.aboutText}>
                     The baseline development group is focused on web services and solution with offices in Mohali and USA. We serve clients all around the world. The inner working of our website have proven vital to our success in online marketing. Connected learning, enhancements and expanding our affiliation with audience members have been our mantras.
                 </Text>
@@ -53,7 +64,7 @@ const HomePage = () => {
             {/* Contact Section */}
 
             <View style={styles.contactUsContainer}>
-                {/* <FontAwesome5 name="arrow-right" size={20} color="#333" style={styles.arrowIcon} onPress={handleContactUsPress} /> */}
+            <Icon name="arrow-right" size={30} color="#bb372a" />
                 <Text style={styles.sectionHeading}>Contact <Text style={styles.redColor}>Us</Text></Text>
                 <Text style={styles.contactText}>Email: hr@baselineitdevelopment.com</Text>
                 <Text style={styles.contactText}>Phone: (+91) 734-074-0007</Text>
@@ -64,6 +75,7 @@ const HomePage = () => {
                 <Text style={styles.contactUsTitle}>Contact Us</Text> */}
 
         </ScrollView>
+        </View>
     );
 };
 
@@ -77,6 +89,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 20,
     },
+    chatIcon: {
+        position: 'absolute',
+        bottom: 20,
+        right: 20,
+        backgroundColor: '#bb372a',
+        borderRadius: 30,
+        width: 60,
+        height: 60,
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 9,
+      },
     logo: {
         width: 350,
         height: 105,
@@ -90,6 +114,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 10,
+        color:"#000"
     },
     aboutSection: {
         marginBottom: 30,
@@ -134,6 +159,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
     },
+    defaultText: {color: 'black'},
 });
 
 export default HomePage;

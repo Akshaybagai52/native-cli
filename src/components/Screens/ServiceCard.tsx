@@ -1,23 +1,29 @@
 import React from "react";
-import { View, Image, Text, StyleSheet } from "react-native";
+import { View, Image, StyleSheet } from "react-native";
+import { Text } from 'react-native-paper';
+
 
 export const ServiceCard = () => {
   return (
     <View >
       <Text style={{ fontSize: 22, marginBottom: 20 }}><Text style={{ fontSize: 40, color: "#bb372a" }}>T</Text>echnologies We Use</Text>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <View style={styles.imageContainer}>
         <Image
           source={{
             uri: "https://baselineitdevelopment.com/assets/images/Bigcommerce.png",
           }}
-          style={{ height: 120, width: 120 }}
+          style={styles.image}
         />
+
+        </View>
+        
 
         <Image
           source={{
             uri: "https://baselineitdevelopment.com/assets/images/Angular.png",
           }}
-          style={{ height: 120, width: 120 }}
+          style={styles.image}
         />
 
       </View>
@@ -84,3 +90,22 @@ export const ServiceCard = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  
+  imageContainer: {
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+  },
+  image: {
+    height: 120,
+    width: "32%",
+  },
+  centreImg: {
+    height: 120,
+    width: "32%"
+  }
+});
+

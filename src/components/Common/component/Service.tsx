@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+
 import { useNavigation } from '@react-navigation/native';
 
 const ServiceCards = ({ icon, title, content }: any) => {
@@ -15,10 +16,10 @@ const ServiceCards = ({ icon, title, content }: any) => {
         <TouchableOpacity onPress={handleCardPress}>
             <Card style={styles.card}>
                 <Card.Content style={styles.cardContent}>
-                    <FontAwesome5 name={icon} size={24} color="#bb372a" />
+                    <Icon name={icon} size={24} color="#bb372a" />
                     <Title style={styles.cardTitle}>{title}</Title>
                     <Paragraph style={styles.cardContentText}>{content}</Paragraph>
-                    <FontAwesome5 name="arrow-right" size={24} color="#333" style={styles.arrowIcon} />
+                    <Icon name="arrow-right" size={24} color="#333" style={styles.arrowIcon} />
                 </Card.Content>
             </Card>
         </TouchableOpacity>
