@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ServiceCard } from './ServiceCard';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { black } from 'react-native-paper/lib/typescript/src/styles/themes/v2/colors';
+import ChatPopup from './ChatSection';
 const HomePage = () => {
     const navigation = useNavigation();
 
@@ -24,7 +25,14 @@ const HomePage = () => {
     }]
 
     return (
-        <ScrollView style={styles.container}>
+        <View style={styles.container}>
+            <View style={styles.chatIcon}>
+            <ChatPopup />
+
+
+            </View>
+
+        <ScrollView>
             {/* Header */}
             <View style={styles.header}>
                 <Image source={require('../../../assets/baselinelogo.png')} style={styles.logo} />
@@ -63,6 +71,7 @@ const HomePage = () => {
                 <Text style={styles.contactUsTitle}>Contact Us</Text> */}
 
         </ScrollView>
+        </View>
     );
 };
 
@@ -76,6 +85,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 20,
     },
+    chatIcon: {
+        position: 'absolute',
+        bottom: 20,
+        right: 20,
+        backgroundColor: '#bb372a',
+        borderRadius: 30,
+        width: 60,
+        height: 60,
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 9,
+      },
     logo: {
         width: 350,
         height: 105,
