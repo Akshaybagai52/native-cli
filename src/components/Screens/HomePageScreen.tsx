@@ -18,6 +18,10 @@ const HomePage = () => {
         icon: "bullhorn",
         title: "Digital marketing",
         content: "We offer solutions to build and highlight the online business presence and boost sales."
+    }, {
+        icon: "bullhorn",
+        title: "React.js",
+        content: "The ReactJS Web and Mobile app development services we provide are best suited for startups and established enterprises."
     }]
 
     return (
