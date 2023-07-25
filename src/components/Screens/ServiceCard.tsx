@@ -101,7 +101,11 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 120,
-    width: 120,
+    width: "32%",
   },
+  centreImg: {
+    height: 120,
+    width: "32%"
+  }
 });
 
