@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text } from 'react-native-paper';
+
 
 const LoginScreen = () => {
     const [email, setEmail] = useState('');

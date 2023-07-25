@@ -1,7 +1,7 @@
 import React from "react";
 import {
   View,
-  Text,
+
   Image,
   ScrollView,
   ImageBackground,
@@ -10,6 +10,8 @@ import {
   Button,
 } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
+import { Text } from 'react-native-paper';
+
 
 const WebDesigning = ({ navigation }: any) => {
   return (
