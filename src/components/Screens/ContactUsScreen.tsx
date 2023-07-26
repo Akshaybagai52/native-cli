@@ -6,6 +6,7 @@ import { Card } from 'react-native-paper';
 import MapView, { Marker } from 'react-native-maps';
 import axios from 'axios';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import SendIntentAndroid from 'react-native-send-intent';
 
 
 const ContactUs = () => {
@@ -64,6 +65,40 @@ const ContactUs = () => {
             .catch((error: any) => {
                 console.error('Error sending form data:', error);
             });
+    };
+
+    const openWhatsAppChat = () => {
+        const phoneNumber = '+917340740007'; // Replace with the recipient's phone number with country code.
+        const message = 'Hello! I would like to chat with you.'; // Replace with the pre-filled message you want to send.
+
+        const url = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+
+        Linking.canOpenURL(url)
+            .then(supported => {
+                if (!supported) {
+                    console.log("WhatsApp is not installed.");
+                } else {
+                    return Linking.openURL(url);
+                }
+            })
+            .catch(err => console.error('An error occurred while opening WhatsApp:', err));
+    };
+
+    const openSkypeChat = () => {
+        const username = 'baselinesales@outlook.com'; // Replace with the recipient's Skype username.
+        const message = 'Hello! I would like to chat with you.'; // Replace with the pre-filled message you want to send.
+
+        const url = `skype:${username}?chat&message=${encodeURIComponent(message)}`;
+
+        Linking.canOpenURL(url)
+            .then(supported => {
+                if (!supported) {
+                    console.log("Skype is not installed.");
+                } else {
+                    return Linking.openURL(url);
+                }
+            })
+            .catch(err => console.error('An error occurred while opening Skype:', err));
     };
     // Render the success screen if isSuccess is true
     if (isSuccess) {
@@ -126,11 +161,11 @@ const ContactUs = () => {
                 <View style={styles.chatContainer}>
                     <Text style={styles.chatTitle}>Chat With Us</Text>
                     <View style={styles.chatOptionsContainer}>
-                        <TouchableOpacity style={styles.chatOption}>
+                        <TouchableOpacity style={styles.chatOption} onPress={openWhatsAppChat}>
                             <FontAwesome5 name="whatsapp" size={24} color="#25D366" />
                             <Text style={styles.chatOptionText}>7340740007</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.chatOption}>
+                        <TouchableOpacity style={styles.chatOption} onPress={openSkypeChat}>
                             <FontAwesome5 name="skype" size={24} color="#00AFF0" />
                             <Text style={styles.chatOptionText2}>Start Chat</Text>
                         </TouchableOpacity>

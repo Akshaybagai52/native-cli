@@ -44,7 +44,7 @@ const HomePage = () => {
 
             {/* About Section */}
             <View style={styles.aboutSection}>
-                <Text style={styles.sectionHeading}>About<Text style={styles.redColor}>Us </Text></Text>
+                <Text style={styles.sectionHeading}>About <Text style={styles.redColor}>Us </Text></Text>
                 <Text style={styles.aboutText}>
                     The baseline development group is focused on web services and solution with offices in Mohali and USA. We serve clients all around the world. The inner working of our website have proven vital to our success in online marketing. Connected learning, enhancements and expanding our affiliation with audience members have been our mantras.
                 </Text>
@@ -64,7 +64,7 @@ const HomePage = () => {
             {/* Contact Section */}
 
             <View style={styles.contactUsContainer}>
-            <Icon name="arrow-right" size={30} color="#bb372a" />
+                {/* <Icon name="arrow-right" size={30} color="#bb372a" /> */}
                 <Text style={styles.sectionHeading}>Contact <Text style={styles.redColor}>Us</Text></Text>
                 <Text style={styles.contactText}>Email: hr@baselineitdevelopment.com</Text>
                 <Text style={styles.contactText}>Phone: (+91) 734-074-0007</Text>

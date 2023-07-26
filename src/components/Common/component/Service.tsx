@@ -19,7 +19,7 @@ const ServiceCards = ({ icon, title, content }: any) => {
                     <Icon name={icon} size={24} color="#bb372a" />
                     <Title style={styles.cardTitle}>{title}</Title>
                     <Paragraph style={styles.cardContentText}>{content}</Paragraph>
-                    <Icon name="arrow-right" size={24} color="#333" style={styles.arrowIcon} />
+                    {/* <Icon name="arrow-right" size={24} color="#333" style={styles.arrowIcon} /> */}
                 </Card.Content>
             </Card>
         </TouchableOpacity>
