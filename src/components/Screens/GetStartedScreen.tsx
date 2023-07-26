@@ -29,8 +29,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#f0f0f0',
     },
     logo: {
-        width: 400,
-        height: 120,
+        width: 300,
+        objectFit:"contain",
+        height: 150,
         marginBottom: 20,
     },
     header: {
