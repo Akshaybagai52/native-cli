@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, TouchableOpacity, Text, Modal, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Icons from 'react-native-vector-icons/AntDesign';
+import { ChatScreen } from '../Common/component/Chatbot';
 
 const ChatPopup = () => {
   const [showChatPopup, setShowChatPopup] = useState(false);
@@ -19,12 +20,13 @@ const ChatPopup = () => {
 
       <Modal visible={showChatPopup} animationType="slide">
         <View>
-          <Text>Chat Messages</Text>
+          <ChatScreen />
         </View>
         <TouchableOpacity
           onPress={() => setShowChatPopup(false)}
           style={styles.closeIcon}>
           <Icons name="close" size={25} color="white" />
+
         </TouchableOpacity>
       </Modal>
     </View>
