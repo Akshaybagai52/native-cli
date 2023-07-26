@@ -5,6 +5,7 @@ import { Text } from 'react-native-paper';
 import { Card } from 'react-native-paper';
 import MapView, { Marker } from 'react-native-maps';
 import axios from 'axios';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 
 const ContactUs = () => {
@@ -122,20 +123,20 @@ const ContactUs = () => {
                     {emailArry?.map((item, index) => <Text style={styles.contactDetailItem} key={index}>E-Mail: <Text style={styles.redColor} onPress={() => handleEmailLink(item)}>{item}</Text></Text>)
                     }
                 </View>
-                {/* <View style={styles.chatContainer}>
+                <View style={styles.chatContainer}>
                     <Text style={styles.chatTitle}>Chat With Us</Text>
                     <View style={styles.chatOptionsContainer}>
-                        <TouchableOpacity style={styles.chatOption}> */}
-                {/* <FontAwesome5 name="whatsapp" size={24} color="#25D366" /> */}
-                {/* <Text style={styles.chatOptionText}>7340740007</Text>
+                        <TouchableOpacity style={styles.chatOption}>
+                            <FontAwesome5 name="whatsapp" size={24} color="#25D366" />
+                            <Text style={styles.chatOptionText}>7340740007</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.chatOption}> */}
-                {/* <FontAwesome name="skype" size={24} color="#00AFF0" /> */}
-                {/* <Text style={styles.chatOptionText2}>Start Chat</Text>
+                        <TouchableOpacity style={styles.chatOption}>
+                            <FontAwesome5 name="skype" size={24} color="#00AFF0" />
+                            <Text style={styles.chatOptionText2}>Start Chat</Text>
                         </TouchableOpacity>
                     </View>
-                </View> */}
-                {/* <View style={styles.mapContainer}>
+                </View>
+                <View style={styles.mapContainer}>
                     <Text style={styles.mapTitle}>Company's Location</Text>
                     <MapView
                         style={styles.map}
@@ -155,11 +156,11 @@ const ContactUs = () => {
                             description="1st Floor, F-33, Phase-8, Industrial Area, Sector 73, Sahibzada Ajit Singh Nagar, Punjab 160071"
                         />
                     </MapView>
-                </View> */}
+                </View>
                 <View style={styles.connectContainer}>
                     <Text style={styles.connectTitle}>Connect with us</Text>
                     <View style={styles.connectIconsContainer}>
-                        {/* <TouchableOpacity style={styles.connectIcon}>
+                        <TouchableOpacity style={styles.connectIcon}>
                             <FontAwesome5 name="instagram" size={24} color="#C13584" />
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.connectIcon}>
@@ -170,7 +171,7 @@ const ContactUs = () => {
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.connectIcon}>
                             <FontAwesome5 name="twitter" size={24} color="#1DA1F2" />
-                        </TouchableOpacity> */}
+                        </TouchableOpacity>
                     </View>
                 </View></View>)}
 
