@@ -64,7 +64,7 @@ const HomePage = () => {
             {/* Contact Section */}
 
             <View style={styles.contactUsContainer}>
-            <Icon name="arrow-right" size={30} color="#bb372a" />
+                {/* <Icon name="arrow-right" size={30} color="#bb372a" /> */}
                 <Text style={styles.sectionHeading}>Contact <Text style={styles.redColor}>Us</Text></Text>
                 <Text style={styles.contactText}>Email: hr@baselineitdevelopment.com</Text>
                 <Text style={styles.contactText}>Phone: (+91) 734-074-0007</Text>
