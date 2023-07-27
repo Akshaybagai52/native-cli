@@ -6,6 +6,8 @@ import {
   FlatList,
   Text,
   StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -20,19 +22,21 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   userMessage: {
+    alignSelf: 'flex-end',
     backgroundColor: '#E1F5FE',
     borderRadius: 8,
     padding: 10,
     maxWidth: '80%',
   },
   botMessage: {
+    alignSelf: 'flex-start',
     backgroundColor: '#FFF9C4',
     borderRadius: 8,
     padding: 10,
     maxWidth: '80%',
   },
   inputContainer: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -42,13 +46,22 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 8,
     height: 50,
+    width: '100%',
     position: 'absolute',
-    top: 300,
-    width: "70%"
+    bottom: 0,
+    left: 0, // Add left: 0 to ensure it sticks to the left side of the screen
+    right: 0,
   },
   input: {
     height: 40,
-    width: "90%"
+    width: '85%',
+  },
+  button: {
+    backgroundColor: 'blue',
+    padding: 10,
+    borderRadius: 5,
+    width: 150,
+    alignItems: 'center',
   },
 });
 
@@ -79,7 +92,7 @@ export const ChatScreen: React.FC = () => {
 
   const fetchWitAiResponse = async (userMessage: string) => {
     // Replace 'YOUR_WIT_AI_ACCESS_TOKEN' with your actual Wit.ai access token
-    const WIT_AI_ACCESS_TOKEN = 'WMFQ3T3A2HOZTOCNNY4R7V44CZAZANUD';
+    const WIT_AI_ACCESS_TOKEN = 'P5SU3XQTAUZVYDPL6ZJ3C5PKQ5KWSLYI';
     const witAiApiUrl = `https://api.wit.ai/message?v=20230924&q=${encodeURIComponent(
       userMessage,
     )}`;
@@ -97,6 +110,7 @@ export const ChatScreen: React.FC = () => {
       }
 
       const data = await response.json();
+      console.log('data', data);
 
       // Add the bot message to the chat
       const botMessage =
@@ -122,7 +136,9 @@ export const ChatScreen: React.FC = () => {
   );
 
   return (
-    <View>
+    <KeyboardAvoidingView
+      style={{height: '100%'}}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <FlatList
         data={messages}
         renderItem={renderMessage}
@@ -130,13 +146,13 @@ export const ChatScreen: React.FC = () => {
       />
       <View style={styles.inputContainer}>
         <TextInput
-          
           onChangeText={text => setInputMessage(text)}
           value={inputMessage}
           placeholder="Type your message..."
+          style={styles.input}
         />
-        <Button title="Send" onPress={handleSendMessage} />
+        <Button title="Send" onPress={handleSendMessage} color="#bb372a" />
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
