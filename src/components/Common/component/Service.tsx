@@ -5,12 +5,12 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import { useNavigation } from '@react-navigation/native';
 
-const ServiceCards = ({ icon, title, content }: any) => {
+const ServiceCards = ({ icon, title, content, name }: any) => {
     const navigation = useNavigation() as any;
 
     const handleCardPress = () => {
         // Navigate to the next screen when the card is pressed
-        icon === 'laptop-code' && navigation.navigate('WebDesigning'); // Replace 'NextScreen' with the screen name you want to navigate to
+        name && navigation.navigate(name);
     };
     return (
         <TouchableOpacity onPress={handleCardPress}>
@@ -19,7 +19,6 @@ const ServiceCards = ({ icon, title, content }: any) => {
                     <Icon name={icon} size={24} color="#bb372a" />
                     <Title style={styles.cardTitle}>{title}</Title>
                     <Paragraph style={styles.cardContentText}>{content}</Paragraph>
-                    {/* <Icon name="arrow-right" size={24} color="#333" style={styles.arrowIcon} /> */}
                 </Card.Content>
             </Card>
         </TouchableOpacity>

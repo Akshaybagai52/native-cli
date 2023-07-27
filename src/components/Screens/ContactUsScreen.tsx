@@ -67,21 +67,18 @@ const ContactUs = () => {
             });
     };
 
-    const openWhatsAppChat = () => {
-        const phoneNumber = '+917340740007'; // Replace with the recipient's phone number with country code.
-        const message = 'Hello! I would like to chat with you.'; // Replace with the pre-filled message you want to send.
-
-        const url = `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-
+    const openWhatsApp = () => {
+        const phoneNumber = '+91 6280675954';
+        const url = `whatsapp://send?phone=${phoneNumber}`;
         Linking.canOpenURL(url)
-            .then(supported => {
+            .then((supported) => {
                 if (!supported) {
-                    console.log("WhatsApp is not installed.");
+                    console.log("WhatsApp is not installed on this device");
                 } else {
                     return Linking.openURL(url);
                 }
             })
-            .catch(err => console.error('An error occurred while opening WhatsApp:', err));
+            .catch((err) => console.error('An error occurred', err));
     };
 
     const openSkypeChat = () => {
@@ -161,7 +158,7 @@ const ContactUs = () => {
                 <View style={styles.chatContainer}>
                     <Text style={styles.chatTitle}>Chat With Us</Text>
                     <View style={styles.chatOptionsContainer}>
-                        <TouchableOpacity style={styles.chatOption} onPress={openWhatsAppChat}>
+                        <TouchableOpacity style={styles.chatOption} onPress={openWhatsApp}>
                             <FontAwesome5 name="whatsapp" size={24} color="#25D366" />
                             <Text style={styles.chatOptionText}>7340740007</Text>
                         </TouchableOpacity>
