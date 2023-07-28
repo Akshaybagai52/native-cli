@@ -68,17 +68,16 @@ const ContactUs = () => {
     };
 
     const openWhatsApp = () => {
-        const phoneNumber = '+91 6280675954';
-        const url = `whatsapp://send?phone=${phoneNumber}`;
-        Linking.canOpenURL(url)
-            .then((supported) => {
-                if (!supported) {
-                    console.log("WhatsApp is not installed on this device");
-                } else {
-                    return Linking.openURL(url);
-                }
+        const phoneNumber = '+91 6280675954'; // Replace this with the phone number you want to open in WhatsApp
+        const url = `whatsapp://send?text=' + 'HEY' + '&phone=91' + ${phoneNumber}`;
+
+        Linking.openURL(url)
+            .then((data) => {
+                console.log('WhatsApp Opened');
             })
-            .catch((err) => console.error('An error occurred', err));
+            .catch(() => {
+                console.log('Make sure Whatsapp installed on your device');
+            });
     };
 
     const openSkypeChat = () => {

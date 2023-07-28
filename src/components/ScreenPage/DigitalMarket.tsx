@@ -55,7 +55,7 @@ const DigitalMarket = ({ navigation }: any) => {
                         keyExtractor={(item, index) => index.toString()}
                         horizontal
                         pagingEnabled
-                        showsHorizontalScrollIndicator={false}
+                        showsHorizontalScrollIndicator={true}
 
                         onLayout={() => {
                             if (currentIndex > 0 && flatListRef.current) {

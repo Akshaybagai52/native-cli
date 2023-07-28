@@ -25,7 +25,7 @@ const ChatPopup = () => {
         <TouchableOpacity
           onPress={() => setShowChatPopup(false)}
           style={styles.closeIcon}>
-          <Icons name="close" size={25} color="white" />
+          <Icons name="close" size={20} color="white" />
 
         </TouchableOpacity>
       </Modal>
@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
     left: 20,
     backgroundColor: '#bb372a',
     borderRadius: 30,
-    width: 35,
-    height: 35,
+    width: 30,
+    height: 30,
     alignItems: 'center',
     justifyContent: 'center',
   },
