@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Image, ScrollView, Modal, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-paper';
 import ServiceCards from '../Common/component/Service';
@@ -12,6 +12,28 @@ import ApplyCard from '../Common/component/ApplyCard';
 const HomePage = () => {
     const navigation = useNavigation();
     const [isFormVisible, setIsFormVisible] = useState(false);
+    const [selectedVal, setSelectedVal] = useState("")
+    const ourJobData = [{
+        icon: "laptop-code",
+        title: "Web designer",
+        name: "1",
+        content: "We need a Web designer who can design, develop and maintain designing-based projects. JavaScript knowledge would be an asset."
+    }, {
+        icon: "code",
+        title: "Front End Developer",
+        name: "2",
+        content: "We are #hiring for positions of #frontendevelopers for a leading Software Company, a very prestigious client."
+    }, {
+        icon: "wordpress",
+        title: "Wordpress Developer",
+        name: "3",
+        content: "You're great at handling both the technical and aesthetic complexities of programming? Our WordPress developers are looking for people like you!"
+    }, {
+        icon: "pencil-alt",
+        title: "Graphic Designers",
+        name: "4",
+        content: "A creative Graphic Designer with expertise in Adobe Photoshop, and Illustrator is needed to interpret our client's needs and design solutions with high visual impact."
+    }]
 
     const ourServiceData = [{
         icon: "laptop-code",
@@ -35,11 +57,25 @@ const HomePage = () => {
         content: "The ReactJS Web and Mobile app development services we provide are best suited for startups and established enterprises."
     }]
     const handleOpenForm = () => {
+        setSelectedVal("")
         setIsFormVisible(true);
+
     };
     const handleCloseForm = () => {
+        setSelectedVal("")
+
         setIsFormVisible(false);
     };
+    const handleInputFunc = (e: any) => {
+        setSelectedVal(e ?? "")
+    }
+    useEffect(() => {
+        if (selectedVal !== "") {
+            setIsFormVisible(true);
+        }
+    },
+        [selectedVal])
+
     return (
         <View style={styles.container}>
             <View style={styles.chatIcon}>
@@ -67,7 +103,7 @@ const HomePage = () => {
                     <Text style={styles.sectionHeading}>Our <Text style={styles.redColor}>Services</Text></Text></View>
                 {ourServiceData.map((item, index) =>
                     <View key={index}><ServiceCards
-                        icon={item?.icon} // Replace with your desired icon name from FontAwesome5
+                        icon={item?.icon} 
                         title={item?.title}
                         content={item?.content}
                         name={item?.name}
@@ -86,26 +122,28 @@ const HomePage = () => {
                     Baseline IT Development offers a great working environment with the best resources in IT industry.
                     We need people with great motivation, good communication skills, and result oriented approach.
                 </Text>
-                <ApplyCard />
+                {ourJobData.map((item, index) =>
+                    <View key={index}><ApplyCard
+                        data={item}
+                        handleInputFunc={handleInputFunc}
+                    /></View>
+                )}
 
                 {/* Modal to display the form */}
                 <Modal visible={isFormVisible} animationType="slide" transparent>
                     <View style={styles.modalContainer}>
-                        <ApplyForm onClose={handleCloseForm} />
+                        <ApplyForm onClose={handleCloseForm} selectedValue={selectedVal} />
                     </View>
                 </Modal>
                 {/* Contact Section */}
 
                 <View style={styles.contactUsContainer}>
-                    {/* <Icon name="arrow-right" size={30} color="#bb372a" /> */}
                     <Text style={styles.sectionHeading}>Contact <Text style={styles.redColor}>Us</Text></Text>
                     <Text style={styles.contactText}>Email: hr@baselineitdevelopment.com</Text>
                     <Text style={styles.contactText}>Phone: (+91) 734-074-0007</Text>
                     {/* Add more contact information as needed */}
                 </View>
                 <ServiceCard />
-                {/* <FontAwesome5 name="arrow-right" size={20} color="#333" style={styles.arrowIcon} />
-                <Text style={styles.contactUsTitle}>Contact Us</Text> */}
 
             </ScrollView>
         </View>
@@ -211,7 +249,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         alignItems: 'center',
         justifyContent: "center",
-        bottom: 10 ,
+        bottom: 10,
         width: "38%",
         left: 105
     },

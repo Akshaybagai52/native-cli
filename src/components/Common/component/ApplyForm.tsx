@@ -11,12 +11,12 @@ import { Picker } from '@react-native-picker/picker';
 import DocumentPicker from 'react-native-document-picker';
 import axios from 'axios';
 
-const ApplyForm = ({ onClose }: any) => {
+const ApplyForm = ({ onClose,selectedValue }: any) => {
     const [firstName, setFirstName] = React.useState('');
     const [lastName, setLastName] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [phone, setPhone] = React.useState('');
-    const [applyFor, setApplyFor] = React.useState('');
+    const [applyFor, setApplyFor] = React.useState(selectedValue);
     const [cvFile, setCVFile] = React.useState<any>(null);
     const pickerArr = [{ label: "Please choose an option", value: "" }, { label: "Web designer", value: "1" }, { label: "Front End Developer", value: "2" }, { label: "Wordpress Developer", value: "3" }, { label: "Graphic Designer", value: "4" }, { label: "Shopify", value: "5" }, { label: "Php Developer", value: "6" }]
 
@@ -101,6 +101,7 @@ const ApplyForm = ({ onClose }: any) => {
             />
             <View style={styles.pickerContainer}><Picker
                 selectedValue={applyFor}
+
                 style={styles.picker}
                 onValueChange={(itemValue: any) => setApplyFor(itemValue)}
             >
