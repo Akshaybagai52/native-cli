@@ -89,7 +89,7 @@ const HomePage = () => {
                 <ApplyCard />
 
                 {/* Modal to display the form */}
-                <Modal visible={isFormVisible} animationType="slide" transparent>
+                <Modal visible={isFormVisible} animationType="slide" presentationStyle='pageSheet'>
                     <View style={styles.modalContainer}>
                         <ApplyForm onClose={handleCloseForm} />
                     </View>
