@@ -73,7 +73,7 @@ const ApplyForm = ({ onClose, selectedValue }: any) => {
   return (
     <View style={styles.parent}>
       <View style={styles.container}>
-        <Text style={styles.title}>Apply for a Position</Text>
+        <Text style={styles.title}>Please Submit Your Details</Text>
         <TextInput
           style={styles.input}
           placeholder="First Name"
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   picker: {
-    height: 40,
+    height: 60,
   },
   cvUpload: {
     borderWidth: 1,
