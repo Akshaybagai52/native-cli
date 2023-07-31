@@ -22,13 +22,13 @@ const ApplyForm = ({ onClose }: any) => {
 
     const handleSubmit = () => {
         const formData = new FormData();
-        formData.append('firstName', firstName);
+        formData.append('name', `${firstName} ${lastName}`);
         formData.append('email', email);
         formData.append('phone', phone);
         formData.append('attachment', {
-            uri: cvFile?.uri,
-            name: cvFile?.name,
-            type: cvFile?.type,
+            uri: cvFile[0]?.uri,
+            name: cvFile[0]?.name,
+            type: cvFile[0]?.type,
         });
 
         // Make a POST request to send the form data to the backend
@@ -113,7 +113,7 @@ const ApplyForm = ({ onClose }: any) => {
             {Platform.OS === 'ios' || Platform.OS === 'android' ? (
                 <TouchableOpacity style={styles.cvUpload} onPress={handleCVUpload}>
                     <Text style={styles.cvUploadText}>
-                        {cvFile ? `File Selected: ${cvFile.name}` : 'Upload Your CV'}
+                        {cvFile ? `File Selected: ${cvFile[0]?.name}` : 'Upload Your CV'}
                     </Text>
                 </TouchableOpacity>
             ) : (
@@ -124,7 +124,7 @@ const ApplyForm = ({ onClose }: any) => {
                     editable={false}
                 />
             )}
-            <TouchableOpacity style={styles.submitButton} >
+            <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
                 <Text style={styles.submitButtonText}>Submit</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.closeButton} onPress={onClose}>

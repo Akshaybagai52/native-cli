@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Image, ScrollView,Modal, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Image, ScrollView, Modal, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-paper';
 import ServiceCards from '../Common/component/Service';
 import { useNavigation } from '@react-navigation/native';
@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { black } from 'react-native-paper/lib/typescript/src/styles/themes/v2/colors';
 import ChatPopup from './ChatSection';
 import ApplyForm from '../Common/component/ApplyForm';
+import ApplyCard from '../Common/component/ApplyCard';
 const HomePage = () => {
     const navigation = useNavigation();
     const [isFormVisible, setIsFormVisible] = useState(false);
@@ -38,7 +39,7 @@ const HomePage = () => {
     };
     const handleCloseForm = () => {
         setIsFormVisible(false);
-      };
+    };
     return (
         <View style={styles.container}>
             <View style={styles.chatIcon}>
@@ -81,6 +82,12 @@ const HomePage = () => {
                 <TouchableOpacity style={styles.button} onPress={handleOpenForm}>
                     <Text style={styles.buttonText}>View Openings</Text>
                 </TouchableOpacity>
+                <Text style={styles.description}>
+                    Baseline IT Development offers a great working environment with the best resources in IT industry.
+                    We need people with great motivation, good communication skills, and result oriented approach.
+                </Text>
+                <ApplyCard />
+
                 {/* Modal to display the form */}
                 <Modal visible={isFormVisible} animationType="slide" transparent>
                     <View style={styles.modalContainer}>
@@ -148,7 +155,7 @@ const styles = StyleSheet.create({
     },
     careerSection: {
         alignItems: 'baseline',
-        marginBottom: 10,
+        marginBottom: 20,
     },
     aboutText: {
         fontSize: 16,
@@ -204,7 +211,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         alignItems: 'center',
         justifyContent: "center",
-        bottom:4,
+        bottom: 10 ,
         width: "38%",
         left: 105
     },
@@ -218,7 +225,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      },
+    },
 });
 
 export default HomePage;
