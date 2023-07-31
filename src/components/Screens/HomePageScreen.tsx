@@ -118,7 +118,7 @@ const HomePage = () => {
                 <TouchableOpacity style={styles.button} onPress={handleOpenForm}>
                     <Text style={styles.buttonText}>View Openings</Text>
                 </TouchableOpacity>
-                <Text style={styles.description}>
+                <Text style={styles.description1}>
                     Baseline IT Development offers a great working environment with the best resources in IT industry.
                     We need people with great motivation, good communication skills, and result oriented approach.
                 </Text>
@@ -235,7 +235,11 @@ const styles = StyleSheet.create({
     defaultText: { color: 'black' },
     description: {
         fontSize: 16,
-        marginBottom: 10,
+        marginBottom: 12,
+    },
+    description1: {
+        fontSize: 16,
+        marginTop: 18,
     },
     title: {
         fontSize: 24,
@@ -244,14 +248,14 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: '#bb372a',
-        paddingVertical: 10,
+        paddingVertical: 8,
         paddingHorizontal: 8,
         borderRadius: 8,
         alignItems: 'center',
         justifyContent: "center",
-        bottom: 10,
+        bottom: 2,
         width: "38%",
-        left: 105
+        // left: 105
     },
     buttonText: {
         color: 'white',
