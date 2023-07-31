@@ -8,26 +8,18 @@ import {
   Platform,
   Modal,
 } from 'react-native';
-import {Picker} from '@react-native-picker/picker';
+import { Picker } from '@react-native-picker/picker';
 import DocumentPicker from 'react-native-document-picker';
 import axios from 'axios';
 
-const ApplyForm = ({onClose}: any) => {
+const ApplyForm = ({ onClose, selectedValue }: any) => {
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [phone, setPhone] = React.useState('');
-  const [applyFor, setApplyFor] = React.useState('');
+  const [applyFor, setApplyFor] = React.useState(selectedValue);
   const [cvFile, setCVFile] = React.useState<any>(null);
-  const pickerArr = [
-    {label: 'Please choose an option', value: ''},
-    {label: 'Web designer', value: '1'},
-    {label: 'Front End Developer', value: '2'},
-    {label: 'Wordpress Developer', value: '3'},
-    {label: 'Graphic Designer', value: '4'},
-    {label: 'Shopify', value: '5'},
-    {label: 'Php Developer', value: '6'},
-  ];
+  const pickerArr = [{ label: "Please choose an option", value: "" }, { label: "Web designer", value: "1" }, { label: "Front End Developer", value: "2" }, { label: "Wordpress Developer", value: "3" }, { label: "Graphic Designer", value: "4" }, { label: "Shopify", value: "5" }, { label: "Php Developer", value: "6" }]
 
   const handleSubmit = () => {
     const formData = new FormData();
@@ -50,7 +42,7 @@ const ApplyForm = ({onClose}: any) => {
         'Content-Type': 'multipart/form-data',
       },
     })
-      .then((response: {data: any}) => {
+      .then((response: { data: any }) => {
         // Handle the response from the backend (if needed)
         console.log('Form data sent successfully:', response.data);
         onClose();
@@ -123,37 +115,39 @@ const ApplyForm = ({onClose}: any) => {
 
             {/* Add more options as needed */}
           </Picker>
-        </View>
+        </View >
 
-        {Platform.OS === 'ios' || Platform.OS === 'android' ? (
-          <TouchableOpacity style={styles.cvUpload} onPress={handleCVUpload}>
-            <Text style={styles.cvUploadText}>
-              {cvFile ? `File Selected: ${cvFile[0]?.name}` : 'Upload Your CV'}
-            </Text>
-          </TouchableOpacity>
-        ) : (
-          <TextInput
-            style={styles.input}
-            placeholder="Upload Your CV"
-            value={cvFile ? cvFile.name : ''}
-            editable={false}
-          />
-        )}
-        <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+        {
+          Platform.OS === 'ios' || Platform.OS === 'android' ? (
+            <TouchableOpacity style={styles.cvUpload} onPress={handleCVUpload}>
+              <Text style={styles.cvUploadText}>
+                {cvFile ? `File Selected: ${cvFile[0]?.name}` : 'Upload Your CV'}
+              </Text>
+            </TouchableOpacity>
+          ) : (
+            <TextInput
+              style={styles.input}
+              placeholder="Upload Your CV"
+              value={cvFile ? cvFile.name : ''}
+              editable={false}
+            />
+          )
+        }
+        < TouchableOpacity style={styles.submitButton} onPress={handleSubmit} >
           <Text style={styles.submitButtonText}>Submit</Text>
-        </TouchableOpacity>
+        </TouchableOpacity >
         <TouchableOpacity style={styles.closeButton} onPress={onClose}>
           <Text style={styles.closeButtonText}>Close</Text>
         </TouchableOpacity>
-      </View>
-    </View>
+      </View >
+    </View >
   );
 };
 
 const styles = StyleSheet.create({
-    parent: {
-        width: "100%",
-    },
+  parent: {
+    width: "100%",
+  },
   container: {
     padding: 20,
     backgroundColor: '#fff',

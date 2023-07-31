@@ -1,63 +1,67 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
-
-const ApplyCard = () => {
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Card, Title, Paragraph } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+interface Iprops {
+    icon: string
+    title: string
+    name: string
+    content: string
+}
+interface IDataprops {
+    data: Iprops,
+    handleInputFunc: any | void
+}
+const ApplyCard = ({ data, handleInputFunc }: IDataprops) => {
     return (
-        <View style={styles.cardContainer}>
-            {/* Logo */}
-            {/* <Image
-                source={require('./path/to/logo.png')}
-                style={styles.logo}
-                resizeMode="contain"
-            /> */}
 
-            {/* Description */}
-            <Text style={styles.description}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in elit
-                nec urna malesuada luctus.
-            </Text>
-
-            {/* Apply Now Button */}
-            <TouchableOpacity style={styles.applyButton}>
-                <Text style={styles.applyButtonText}>Apply Now</Text>
-            </TouchableOpacity>
-        </View>
+        <Card style={styles.card}>
+            <Card.Content style={styles.cardContent}>
+                <Icon name={data?.icon} size={24} color="#bb372a" />
+                <Title style={styles.cardTitle}>{data?.title}</Title>
+                <Paragraph style={styles.cardContentText}>{data?.content}</Paragraph>
+                {/* Apply Now Button */}
+                <TouchableOpacity style={styles.applyButton} onPress={() => handleInputFunc(data?.name)}>
+                    <Text style={styles.applyButtonText}>Apply Now</Text>
+                </TouchableOpacity>
+            </Card.Content>
+        </Card>
     );
 };
 
 const styles = StyleSheet.create({
-    cardContainer: {
-        backgroundColor: '#ffffff',
+    card: {
+        marginVertical: 10,
         padding: 16,
         borderRadius: 8,
-        shadowColor: '#000000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 4,
-        elevation: 4,
-        marginHorizontal: 16,
-        marginVertical: 8,
+        elevation: 3, // For Android shadow
     },
-    logo: {
-        width: 100,
-        height: 100,
-        alignSelf: 'center',
+    cardContent: {
+        alignItems: 'center',
     },
-    description: {
-        fontSize: 16,
-        marginVertical: 12,
-        textAlign: 'center',
+    cardTitle: {
+        marginLeft: 10,
+        fontSize: 20,
+        fontWeight: 'bold',
+        // flex: 1,
+    },
+    cardContentText: {
+        marginTop: 10,
+    },
+    arrowIcon: {
+        marginLeft: 'auto',
+        color: '#bb372a'
     },
     applyButton: {
-        backgroundColor: '#007bff',
-        padding: 12,
-        borderRadius: 4,
-        alignSelf: 'center',
+        backgroundColor: '#',
+        padding: 8,
+        borderRadius: 6,
+        alignSelf:'baseline',
+        top: 12
     },
     applyButtonText: {
-        color: '#ffffff',
-        fontSize: 16,
-        fontWeight: 'bold',
+        color: '#bb372a',
+        fontSize: 14,
     },
 });
 
