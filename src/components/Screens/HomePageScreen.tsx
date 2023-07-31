@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, StyleSheet, Image, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, Image, ScrollView, Modal, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-paper';
 import ServiceCards from '../Common/component/Service';
 import { useNavigation } from '@react-navigation/native';
@@ -7,8 +7,11 @@ import { ServiceCard } from './ServiceCard';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { black } from 'react-native-paper/lib/typescript/src/styles/themes/v2/colors';
 import ChatPopup from './ChatSection';
+import ApplyForm from '../Common/component/ApplyForm';
+import ApplyCard from '../Common/component/ApplyCard';
 const HomePage = () => {
     const navigation = useNavigation();
+    const [isFormVisible, setIsFormVisible] = useState(false);
 
     const ourServiceData = [{
         icon: "laptop-code",
@@ -16,22 +19,27 @@ const HomePage = () => {
         name: "WebDesigning",
         content: "We provide top-notch web development services using the latest technologies."
     }, {
-        icon: "php",
-        title: "Php developer",
-        name: "",
-        content: "We design innovative, user-friendly, and result-driven websites for our customers."
-    }, {
         icon: "digital-ocean",
         title: "Digital marketing",
         name: "DigitalMarketing",
         content: "We offer solutions to build and highlight the online business presence and boost sales."
+    }, {
+        icon: "php",
+        title: "Php developer",
+        name: "",
+        content: "We design innovative, user-friendly, and result-driven websites for our customers."
     }, {
         icon: "react",
         title: "React.js",
         name: "",
         content: "The ReactJS Web and Mobile app development services we provide are best suited for startups and established enterprises."
     }]
-
+    const handleOpenForm = () => {
+        setIsFormVisible(true);
+    };
+    const handleCloseForm = () => {
+        setIsFormVisible(false);
+    };
     return (
         <View style={styles.container}>
             <View style={styles.chatIcon}>
@@ -55,7 +63,7 @@ const HomePage = () => {
                 </View>
 
                 {/* Services Section */}
-                <View style={styles.servicesSection}>
+                <View style={styles.aboutSection}>
                     <Text style={styles.sectionHeading}>Our <Text style={styles.redColor}>Services</Text></Text></View>
                 {ourServiceData.map((item, index) =>
                     <View key={index}><ServiceCards
@@ -65,7 +73,27 @@ const HomePage = () => {
                         name={item?.name}
                     /></View>
                 )}
+                {/* Career Section */}
+                <View style={styles.careerSection}>
+                    <Text style={styles.title}>Join <Text style={styles.redColor}>Us</Text></Text></View>
+                <Text style={styles.description}>
+                    Baseline IT Development has a team of professionals with one mission of empowering lives through intense solutions of technology. We invite clients, partners, and employees to join us for business development as well as career development.
+                </Text>
+                <TouchableOpacity style={styles.button} onPress={handleOpenForm}>
+                    <Text style={styles.buttonText}>View Openings</Text>
+                </TouchableOpacity>
+                <Text style={styles.description}>
+                    Baseline IT Development offers a great working environment with the best resources in IT industry.
+                    We need people with great motivation, good communication skills, and result oriented approach.
+                </Text>
+                <ApplyCard />
 
+                {/* Modal to display the form */}
+                <Modal visible={isFormVisible} animationType="slide" transparent>
+                    <View style={styles.modalContainer}>
+                        <ApplyForm onClose={handleCloseForm} />
+                    </View>
+                </Modal>
                 {/* Contact Section */}
 
                 <View style={styles.contactUsContainer}>
@@ -123,13 +151,14 @@ const styles = StyleSheet.create({
         color: "#000"
     },
     aboutSection: {
-        marginBottom: 30,
+        marginBottom: 20,
+    },
+    careerSection: {
+        alignItems: 'baseline',
+        marginBottom: 20,
     },
     aboutText: {
         fontSize: 16,
-    },
-    servicesSection: {
-        marginBottom: 30,
     },
     serviceItem: {
         flexDirection: 'row',
@@ -166,6 +195,37 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     defaultText: { color: 'black' },
+    description: {
+        fontSize: 16,
+        marginBottom: 10,
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 0,
+    },
+    button: {
+        backgroundColor: '#bb372a',
+        paddingVertical: 10,
+        paddingHorizontal: 8,
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: "center",
+        bottom: 10 ,
+        width: "38%",
+        left: 105
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
 });
 
 export default HomePage;

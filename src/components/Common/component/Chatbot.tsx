@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   TextInput,
@@ -9,61 +9,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: '#F5F5F5',
-  },
-  messageContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 8,
-  },
-  userMessage: {
-    alignSelf: 'flex-end',
-    backgroundColor: '#E1F5FE',
-    borderRadius: 8,
-    padding: 10,
-    maxWidth: '80%',
-  },
-  botMessage: {
-    alignSelf: 'flex-start',
-    backgroundColor: '#FFF9C4',
-    borderRadius: 8,
-    padding: 10,
-    maxWidth: '80%',
-  },
-  inputContainer: {
-    backgroundColor: '#fff',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginTop: 16,
-    borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 8,
-    paddingHorizontal: 8,
-    height: 50,
-    width: '100%',
-    position: 'absolute',
-    bottom: 0,
-    left: 0, // Add left: 0 to ensure it sticks to the left side of the screen
-    right: 0,
-  },
-  input: {
-    height: 40,
-    width: '85%',
-  },
-  button: {
-    backgroundColor: 'blue',
-    padding: 10,
-    borderRadius: 5,
-    width: 150,
-    alignItems: 'center',
-  },
-});
+import { CustomButton } from '../themes/CustomButton ';
 
 interface Message {
   text: string;
@@ -80,7 +26,7 @@ export const ChatScreen: React.FC = () => {
     // Add the user message to the chat
     setMessages(prevMessages => [
       ...prevMessages,
-      {text: inputMessage, sender: 'user'},
+      { text: inputMessage, sender: 'user' },
     ]);
 
     // Clear the input field
@@ -117,7 +63,7 @@ export const ChatScreen: React.FC = () => {
         data && data.text ? data.text : 'Sorry, I did not understand that.';
       setMessages(prevMessages => [
         ...prevMessages,
-        {text: botMessage, sender: 'bot'},
+        { text: botMessage, sender: 'bot' },
       ]);
     } catch (error) {
       console.error('Error while fetching Wit.ai response:', error);
@@ -125,7 +71,7 @@ export const ChatScreen: React.FC = () => {
     console.log('Current Messages:', messages);
   };
 
-  const renderMessage = ({item}: {item: Message}) => (
+  const renderMessage = ({ item }: { item: Message }) => (
     <View
       style={[
         styles.messageContainer,
@@ -137,7 +83,7 @@ export const ChatScreen: React.FC = () => {
 
   return (
     <KeyboardAvoidingView
-      style={{height: '100%'}}
+      style={{ height: '100%', marginLeft: 12, marginRight: 12 }}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <FlatList
         data={messages}
@@ -151,8 +97,64 @@ export const ChatScreen: React.FC = () => {
           placeholder="Type your message..."
           style={styles.input}
         />
-        <Button title="Send" onPress={handleSendMessage} color="#bb372a" />
+        <CustomButton title="Send" onPress={handleSendMessage} color="#bb372a" />
       </View>
     </KeyboardAvoidingView>
   );
 };
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: '#F5F5F5',
+  },
+  messageContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 8,
+    marginTop: 10
+  },
+  userMessage: {
+    alignSelf: 'flex-end',
+    backgroundColor: '#E1F5FE',
+    borderRadius: 8,
+    padding: 10,
+    maxWidth: '80%',
+  },
+  botMessage: {
+    alignSelf: 'flex-start',
+    backgroundColor: '#FFF9C4',
+    borderRadius: 8,
+    padding: 10,
+    maxWidth: '80%',
+  },
+  inputContainer: {
+    backgroundColor: '#fff',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    // marginTop: 16,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    height: 50,
+    width: '100%',
+    position: 'absolute',
+    bottom: 8,
+    left: 0, // Add left: 0 to ensure it sticks to the left side of the screen
+    right: 0,
+  },
+  input: {
+    height: 40,
+    width: '85%',
+    color: '#333',
+  },
+  button: {
+    backgroundColor: 'blue',
+    padding: 10,
+    borderRadius: 5,
+    width: 150,
+    alignItems: 'center',
+  },
+});

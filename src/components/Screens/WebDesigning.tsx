@@ -6,10 +6,10 @@ import {
   ImageBackground,
   StyleSheet,
   TouchableOpacity,
-  Button,
+  Button, FlatList, Dimensions
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import {Text} from 'react-native-paper';
+import { Text } from 'react-native-paper';
 
 const details = [
   {
@@ -43,10 +43,19 @@ const details = [
     text: 'Create and maintain prototypes that reflect the best user experience.',
   },
 ];
+const IMAGE_DATA = [
+  'https://i.postimg.cc/MX2fChGT/19197357.png',
+  'https://i.postimg.cc/MX2fChGT/19197357.png',
+  'https://i.postimg.cc/MX2fChGT/19197357.png',
+  // Add more image URLs here
+];
 
-const WebDesigning = ({navigation}: any) => {
+const WebDesigning = ({ navigation }: any) => {
+  const renderItem = ({ item }: any) => (
+    <Image source={{ uri: item }} style={styles.image} resizeMode="cover" />
+  );
   return (
-    <View style={{padding: 20}}>
+    <View style={{ padding: 20 }}>
       <ScrollView>
         <ImageBackground
           source={{
@@ -58,22 +67,22 @@ const WebDesigning = ({navigation}: any) => {
             flex: 1,
             justifyContent: 'center',
           }}>
-          <View style={{padding: 30}}>
-            <Text style={{color: 'white', fontSize: 21}}>
+          <View style={{ padding: 30 }}>
+            <Text style={{ color: 'white', fontSize: 21 }}>
               Best Web Designing Service
             </Text>
-            <Text style={{color: 'white'}}>
+            <Text style={{ color: 'white' }}>
               Creating Unique Web Designs, Bringing Your Websites Back To Life!
             </Text>
           </View>
         </ImageBackground>
-        <Text style={{fontSize: 16, marginTop: 15}}>
-          <Text style={{fontSize: 22, fontWeight: '700'}}>
+        <Text style={{ fontSize: 16, marginTop: 15 }}>
+          <Text style={{ fontSize: 22, fontWeight: '700' }}>
             We use cutting-edge, interactive, and future-ready web designs to
             propel your business's growth and profits.{'\n'}
             {'\n'}
           </Text>
-          <Text style={{color: '#bb372a', fontWeight: '700'}}>
+          <Text style={{ color: '#bb372a', fontWeight: '700' }}>
             Baseline IT Development
           </Text>{' '}
           is a premier web design company in Mohali that strives to assist
@@ -92,10 +101,19 @@ const WebDesigning = ({navigation}: any) => {
           consider all performance factors, the latest design trends, search
           factors, and more.{'\n'}
         </Text>
-        <Image
+        {/* <Image
           source={{uri: 'https://i.postimg.cc/MX2fChGT/19197357.png'}}
           style={{height: 350, width: '100%'}}
-        />
+        /> */}
+        <View style={styles.container}><FlatList
+          data={IMAGE_DATA}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => index.toString()}
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+        /></View>
+
         <View>
           <Text style={styles.headingText}>Why Choose US ?</Text>
           {details.map((item, index) => (
@@ -139,6 +157,14 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  container: {
+    height: 300, // Adjust the height of the image slider as needed
+    marginTop: 20,
+  },
+  image: {
+    width: Dimensions.get('window').width, // Adjust the width of the image as needed
+    height: '100%',
   },
 });
 export default WebDesigning;
