@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1084364566085",
+    "project_id": "baseline-25c8a",
+    "storage_bucket": "baseline-25c8a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1084364566085:android:49d0cd19344297a7113d2c",
+        "android_client_info": {
+          "package_name": "baselinemobileapp.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1084364566085-l90cbbcf2iag0pm11cevo7e6nk3ah97o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2h72gT2XC3XsUz7ujbdq9GBc6cQ8KRik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1084364566085-l90cbbcf2iag0pm11cevo7e6nk3ah97o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

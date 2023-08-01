@@ -6,12 +6,13 @@ import ContactUs from './src/components/Screens/ContactUsScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DigitalMarket from './src/components/ScreenPage/DigitalMarket';
+import LoginScreen from './src/components/Screens/LoginScreen';
 export default function App() {
   const Stack = createNativeStackNavigator();
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="GetStarted">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
           name="GetStarted"
           component={GetStartedScreen}
@@ -20,6 +21,11 @@ export default function App() {
         <Stack.Screen
           name="HomePage"
           component={HomePageScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen name="WebDesigning" component={WebDesigning} />
