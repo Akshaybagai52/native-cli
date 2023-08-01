@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import {
   View,
   TextInput,
-  Button,
   FlatList,
   Text,
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import { CustomButton } from '../themes/CustomButton ';
+import { CustomButton } from '../themes/Buttons/CustomButton ';
 
 interface Message {
   text: string;
