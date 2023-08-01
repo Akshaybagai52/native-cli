@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { useNavigation } from '@react-navigation/native';
+
 interface Iprops {
     icon: string
     title: string
@@ -10,22 +12,28 @@ interface Iprops {
 }
 interface IDataprops {
     data: Iprops,
-    handleInputFunc: any | void
+    handleInputFunc: any | void,
+    applyType?: boolean
 }
-const ApplyCard = ({ data, handleInputFunc }: IDataprops) => {
+const Cards = ({ data, handleInputFunc, applyType }: IDataprops) => {
+    const navigation = useNavigation() as any;
+    const handleCardPress = () => {
+        // Navigate to the next screen when the card is pressed
+        data?.name && navigation.navigate(data?.name);
+    };
     return (
-
-        <Card style={styles.card}>
+        <TouchableOpacity onPress={handleCardPress} disabled={applyType ? true : false}><Card style={styles.card}>
             <Card.Content style={styles.cardContent}>
                 <Icon name={data?.icon} size={24} color="#bb372a" />
                 <Title style={styles.cardTitle}>{data?.title}</Title>
                 <Paragraph style={styles.cardContentText}>{data?.content}</Paragraph>
                 {/* Apply Now Button */}
-                <TouchableOpacity style={styles.applyButton} onPress={() => handleInputFunc(data?.name)}>
+                {applyType && <TouchableOpacity style={styles.applyButton} onPress={() => handleInputFunc(data?.name)}>
                     <Text style={styles.applyButtonText}>Apply Now</Text>
-                </TouchableOpacity>
+                </TouchableOpacity>}
             </Card.Content>
-        </Card>
+        </Card></TouchableOpacity>
+
     );
 };
 
@@ -56,7 +64,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#',
         padding: 8,
         borderRadius: 6,
-        alignSelf:'baseline',
+        alignSelf: 'baseline',
         top: 12
     },
     applyButtonText: {
@@ -65,4 +73,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ApplyCard;
+export default Cards;
