@@ -7,6 +7,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DigitalMarket from './src/components/ScreenPage/DigitalMarket';
 import LoginScreen from './src/components/Screens/LoginScreen';
+import { StatusBar, View } from 'react-native';
+import Chatbot from './src/components/Screens/Chatbot';
 export default function App() {
   const Stack = createNativeStackNavigator();
 

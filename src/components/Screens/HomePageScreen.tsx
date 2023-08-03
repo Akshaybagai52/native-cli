@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Image, ScrollView, Modal, TouchableOpacity } from 'react-native';
+import { View, Image, ScrollView, Modal, TouchableOpacity, StatusBar } from 'react-native';
 import { Text } from 'react-native-paper';
 import { ServiceCard } from './ServiceCard';
 import ChatPopup from './ChatSection';
@@ -7,7 +7,11 @@ import ApplyForm from '../Common/component/ApplyForm';
 import Cards from '../Common/component/Card';
 import { styles } from '../styles/screen/HomeStyles';
 import { ourJobData, ourServiceData } from '../Common/data/variables';
+import { useNavigation } from '@react-navigation/native';
+import Chatbot from './Chatbot';
+
 const HomePage = () => {
+    const navigation = useNavigation() as any;
     const [isFormVisible, setIsFormVisible] = useState(false);
     const [selectedVal, setSelectedVal] = useState("")
     const handleOpenForm = () => {
@@ -87,6 +91,9 @@ const HomePage = () => {
                     <Text style={styles.sectionHeading}>Contact <Text style={styles.redColor}>Us</Text></Text>
                     <Text style={styles.contactText}>Email: hr@baselineitdevelopment.com</Text>
                     <Text style={styles.contactText}>Phone: (+91) 734-074-0007</Text>
+                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("ContactUs")}>
+                        <Text style={styles.buttonText}>Contact Us</Text>
+                    </TouchableOpacity>
                     {/* Add more contact information as needed */}
                 </View>
                 <ServiceCard />

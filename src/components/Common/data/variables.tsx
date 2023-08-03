@@ -65,3 +65,6 @@ export const IMAGE_DATA = [
     'https://img.freepik.com/free-photo/corporate-management-strategy-solution-branding-concept_53876-167088.jpg?w=626',
     'https://img.freepik.com/free-photo/corporate-management-strategy-solution-branding-concept_53876-167088.jpg?w=626',
 ];
+export const iconArray = [{ color: "#C13584", name: "instagram", url: 'https://www.instagram.com/baselineitdevelopmemt/' }, { color: "#0077B5", name: "linkedin", url: 'https://in.linkedin.com/company/baselineitdevelopment' }, { color: "#3B5998", name: "facebook", url: 'https://www.facebook.com/BaselineItDevelopment.pvt.ltd' }, { color: "#1DA1F2", name: "twitter", url: 'https://twitter.com/i/flow/login?redirect_after_login=%2FBaselineITDev%2F' }]
+export const contactDetails = ['1st FLOOR, F33', 'Phase-8, Industrial Area, Sector 73', 'Sahibzada Ajit Singh Nagar, Punjab 160071']
+export const emailArry = ['hr@baselineitdevelopment.com', 'sales@baselineitdevelopment.com']
