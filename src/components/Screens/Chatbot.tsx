@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { GiftedChat } from 'react-native-gifted-chat';
+import { GiftedChat, InputToolbar } from 'react-native-gifted-chat';
 import { LinearGradient } from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome'; // or any other icon library you prefer
-
 
 const Chatbot = () => {
     const [messages, setMessages] = useState<any>([]);
 
     // Function to handle user messages
-    const handleUserMessage = (newMessages :any = []) => {
-        setMessages((prevMessages:any) => GiftedChat.append(prevMessages, newMessages));
+    const handleUserMessage = (newMessages: any = []) => {
+        setMessages((prevMessages: any) => GiftedChat.append(prevMessages, newMessages));
         // You can handle user messages here and send responses from the chatbot service
         // For now, we'll just echo back the user's message
-        const botResponse:any = {
+        const botResponse: any = {
             _id: Math.random().toString(),
             text: newMessages[0].text,
             createdAt: new Date(),
@@ -24,10 +23,20 @@ const Chatbot = () => {
             },
         };
         setTimeout(() => {
-            setMessages((prevMessages:any) => GiftedChat.append(prevMessages, [botResponse]));
+            setMessages((prevMessages: any) => GiftedChat.append(prevMessages, [botResponse]));
         }, 1000); // Simulate a delay before the bot responds
     };
 
+    const CustomInputToolbar = (props: any) => {
+        return (
+            <InputToolbar
+                {...props}
+                textInputStyle={{
+                    color: 'black', // Set the desired text color
+                }}
+            />
+        );
+    };
     return (
         <View style={styles.container}>
             <LinearGradient
@@ -43,6 +52,7 @@ const Chatbot = () => {
                     }}
                     renderAvatar={() => <Icon name="user-circle-o" size={40} />}
                     placeholder="Type your message..."
+                    renderInputToolbar={props => <CustomInputToolbar {...props} />}
                 />
             </LinearGradient>
         </View>

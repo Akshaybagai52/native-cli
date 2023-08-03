@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { Text } from 'react-native-paper';
+import { View, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { Text, TextInput } from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const LoginScreen = () => {
@@ -15,14 +16,24 @@ const LoginScreen = () => {
         setError('');
         try {
             await auth().signInWithEmailAndPassword(email, password);
-            // User is now logged in, navigate to the GetStarted page
-            navigation.navigate('GetStarted');
-        } catch (error: any) {
-            // Handle login errors
-            if (error?.code === 'auth/invalid-email' || error?.code === 'auth/wrong-password' || error?.code === 'auth/user-not-found') {
-                setError('Invalid email or password. Please try again.'); // Show an error message to the user
+            const user = auth().currentUser;
+            if (user) {
+                await AsyncStorage.setItem('authUserData', JSON.stringify({ userId: user.uid, email: user.email }));
+            }
+
+            // Cheack if the user hs logged in before
+            const userLoggedInBefore = await AsyncStorage.getItem('userLoggedIn');
+            if (userLoggedInBefore) {
+                // If the user has logged in before, navigate to the "Get Started" screen
+                navigation.navigate('HomePage');
             } else {
-                setError('Something went wrong. Please try again later.'); // Show a generic error message for other errors
+                // If it's the user's first login, navigate to the "Home" screen
+                navigation.navigate('GetStarted');
+            }
+        } catch (error: any) {
+            if (error?.code === 'auth/invalid-email' || error?.code === 'auth/wrong-password' || error?.code === 'auth/user-not-found') {
+                setError('Invalid email or password. Please try again.');
+                setError('Something went wrong. Please try again later.');
             }
         }
     };
@@ -32,7 +43,7 @@ const LoginScreen = () => {
         } else if (field === 'password') {
             setPassword(text);
         }
-        setDisabled(!email || !password); // Disable the button if email or password is empty
+        setDisabled(!email || !password);
     };
 
     return (
@@ -84,7 +95,7 @@ const styles = StyleSheet.create({
     },
     input: {
         width: '100%',
-        height: 50,
+        height: 35,
         borderWidth: 1,
         borderColor: '#ccc',
         borderRadius: 5,

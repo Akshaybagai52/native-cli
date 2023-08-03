@@ -2,10 +2,12 @@ import React from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-paper';
 import { styles } from '../styles/screen/GetStartedStyles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const GetStartedScreen = ({ navigation }: any) => {
-    const handleGetStartedPress = () => {
+    const handleGetStartedPress = async () => {
+        await AsyncStorage.setItem('userLoggedIn', 'true');
         navigation.navigate('HomePage');
     };
 

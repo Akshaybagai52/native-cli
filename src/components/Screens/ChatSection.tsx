@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, Modal,StatusBar } from 'react-native';
+import { View, TouchableOpacity, Modal } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Icons from 'react-native-vector-icons/AntDesign';
-import { ChatScreen } from '../Common/component/Chatbot';
 import { styles } from '../styles/screen/ChatSectionStyles';
 import Chatbot from './Chatbot';
 
@@ -15,10 +14,9 @@ const ChatPopup = () => {
       </TouchableOpacity>
 
       <Modal visible={showChatPopup} animationType="slide">
-      <View style={{ flex: 1 }}>
-                <StatusBar barStyle="dark-content" />
-                <Chatbot />
-            </View>
+        <View style={{ flex: 1 }}>
+          <Chatbot />
+        </View>
         {/* <View>
           <ChatScreen />
         </View> */}
