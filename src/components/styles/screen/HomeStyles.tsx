@@ -104,7 +104,6 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: "center",
         bottom: 2,
-        width: "38%",
         // left: 105
     },
     buttonText: {

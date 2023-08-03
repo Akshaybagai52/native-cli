@@ -8,7 +8,6 @@ import Cards from '../Common/component/Card';
 import { styles } from '../styles/screen/HomeStyles';
 import { ourJobData, ourServiceData } from '../Common/data/variables';
 import { useNavigation } from '@react-navigation/native';
-import Chatbot from './Chatbot';
 
 const HomePage = () => {
     const navigation = useNavigation() as any;
@@ -64,9 +63,10 @@ const HomePage = () => {
                 <Text style={styles.description}>
                     Baseline IT Development has a team of professionals with one mission of empowering lives through intense solutions of technology. We invite clients, partners, and employees to join us for business development as well as career development.
                 </Text>
-                <TouchableOpacity style={styles.button} onPress={handleOpenForm}>
+                <View ><TouchableOpacity style={styles.button} onPress={handleOpenForm}>
                     <Text style={styles.buttonText}>View Openings</Text>
-                </TouchableOpacity>
+                </TouchableOpacity></View>
+
                 <Text style={styles.description1}>
                     Baseline IT Development offers a great working environment with the best resources in IT industry.
                     We need people with great motivation, good communication skills, and result oriented approach.

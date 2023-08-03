@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import GetStartedScreen from './src/components/Screens/GetStartedScreen';
 import HomePageScreen from './src/components/Screens/HomePageScreen';
 import WebDesigning from './src/components/Screens/WebDesigning';
@@ -7,14 +7,29 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DigitalMarket from './src/components/ScreenPage/DigitalMarket';
 import LoginScreen from './src/components/Screens/LoginScreen';
-import { StatusBar, View } from 'react-native';
-import Chatbot from './src/components/Screens/Chatbot';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export default function App() {
   const Stack = createNativeStackNavigator();
+  const [initialRoute, setInitialRoute] = useState('');
 
+  useEffect(() => {
+    // Check if the user has previously logged in
+    const checkIfUserLoggedIn = async () => {
+      const userData = await AsyncStorage.getItem('authUserData');
+
+      if (userData) {
+        setInitialRoute('GetStarted');
+      } else {
+        setInitialRoute('Login');
+      }
+    };
+
+    checkIfUserLoggedIn();
+  }, []);
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName={initialRoute}>
         <Stack.Screen
           name="GetStarted"
           component={GetStartedScreen}
