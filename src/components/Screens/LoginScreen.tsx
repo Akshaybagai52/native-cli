@@ -19,7 +19,7 @@ const LoginScreen = () => {
             navigation.navigate('GetStarted');
         } catch (error: any) {
             // Handle login errors
-            if (error?.code === 'auth/invalid-email' || error?.code === 'auth/wrong-password') {
+            if (error?.code === 'auth/invalid-email' || error?.code === 'auth/wrong-password' || error?.code === 'auth/user-not-found') {
                 setError('Invalid email or password. Please try again.'); // Show an error message to the user
             } else {
                 setError('Something went wrong. Please try again later.'); // Show a generic error message for other errors

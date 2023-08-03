@@ -5,7 +5,7 @@ import MapView, { Marker } from 'react-native-maps';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { styles } from '../styles/screen/ContactUsStyles';
 import axios from 'axios';
-
+import { iconArray, contactDetails, emailArry } from '../Common/data/variables';
 
 const ContactUs = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -15,8 +15,6 @@ const ContactUs = () => {
         email: '',
         message: '',
     });
-    const contactDetails = ['1st FLOOR, F33', 'Phase-8, Industrial Area, Sector 73', 'Sahibzada Ajit Singh Nagar, Punjab 160071']
-    const emailArry = ['hr@baselineitdevelopment.com', 'sales@baselineitdevelopment.com']
     const companyLatitude = 30.711352;
     const companyLongitude = 76.710983;
 
@@ -76,6 +74,10 @@ const ContactUs = () => {
             .catch(() => {
                 console.log('Make sure Whatsapp installed on your device');
             });
+    };
+
+    const handleOpenLink = (url: string) => {
+        Linking.openURL(url).catch((err) => console.error('Error opening link:', err));
     };
 
     const openSkypeChat = () => {
@@ -189,23 +191,16 @@ const ContactUs = () => {
                 <View style={styles.connectContainer}>
                     <Text style={styles.connectTitle}>Connect with us</Text>
                     <View style={styles.connectIconsContainer}>
-                        <TouchableOpacity style={styles.connectIcon}>
-                            <FontAwesome5 name="instagram" size={24} color="#C13584" />
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.connectIcon}>
-                            <FontAwesome5 name="linkedin" size={24} color="#0077B5" />
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.connectIcon}>
-                            <FontAwesome5 name="facebook" size={24} color="#3B5998" />
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.connectIcon}>
-                            <FontAwesome5 name="twitter" size={24} color="#1DA1F2" />
-                        </TouchableOpacity>
+                        {iconArray?.map((item: any, index: number) =>
+                            < TouchableOpacity key={index} style={styles.connectIcon} onPress={() => handleOpenLink(item?.url)}>
+                                <FontAwesome5 name={item?.name} size={24} color={item?.color} />
+                            </TouchableOpacity>)}
                     </View>
-                </View></View>)}
+                </View></View>)
+            }
 
 
-        </ScrollView>
+        </ScrollView >
     );
 };
 
