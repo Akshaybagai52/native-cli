@@ -36,17 +36,21 @@ export const ChatScreen: React.FC = () => {
   };
 
   const fetchWitAiResponse = async (userMessage: string) => {
+    const payload = {
+      type: "message",
+      message: userMessage
+    }
     // Replace 'YOUR_WIT_AI_ACCESS_TOKEN' with your actual Wit.ai access token
     const WIT_AI_ACCESS_TOKEN = 'P5SU3XQTAUZVYDPL6ZJ3C5PKQ5KWSLYI';
-    const witAiApiUrl = `https://api.wit.ai/message?v=20230924&q=${encodeURIComponent(
-      userMessage,
-    )}`;
+    const witAiApiUrl = `https://api.wit.ai/event?v=20230807&session_id=prod7n6&context_map=%7B%7D`;
 
     try {
       const response = await fetch(witAiApiUrl, {
+        method: 'POST',
         headers: {
           Authorization: `Bearer ${WIT_AI_ACCESS_TOKEN}`,
         },
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
@@ -59,7 +63,7 @@ export const ChatScreen: React.FC = () => {
 
       // Add the bot message to the chat
       const botMessage =
-        data && data.text ? data.text : 'Sorry, I did not understand that.';
+        data && data?.response?.text ? data?.response?.text : 'Sorry, I did not understand that.';
       setMessages(prevMessages => [
         ...prevMessages,
         { text: botMessage, sender: 'bot' },
@@ -67,7 +71,6 @@ export const ChatScreen: React.FC = () => {
     } catch (error) {
       console.error('Error while fetching Wit.ai response:', error);
     }
-    console.log('Current Messages:', messages);
   };
 
   const renderMessage = ({ item }: { item: Message }) => (
