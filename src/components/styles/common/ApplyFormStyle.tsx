@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 20,
+        color: "grey"
     },
     input: {
         borderWidth: 1,
@@ -21,6 +22,7 @@ export const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 12,
         marginBottom: 15,
+        color: "black"
     },
     pickerContainer: {
         borderWidth: 1,

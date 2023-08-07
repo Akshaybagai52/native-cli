@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Modal } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Icons from 'react-native-vector-icons/AntDesign';
 import { styles } from '../styles/screen/ChatSectionStyles';
-import Chatbot from './Chatbot';
+import { ChatScreen } from '../Common/component/Chatbot';
 
 const ChatPopup = () => {
   const [showChatPopup, setShowChatPopup] = useState(false);
@@ -14,12 +14,9 @@ const ChatPopup = () => {
       </TouchableOpacity>
 
       <Modal visible={showChatPopup} animationType="slide">
-        <View style={{ flex: 1 }}>
-          <Chatbot />
-        </View>
-        {/* <View>
+        <View>
           <ChatScreen />
-        </View> */}
+        </View>
         <TouchableOpacity
           onPress={() => setShowChatPopup(false)}
           style={styles.closeIcon}>
